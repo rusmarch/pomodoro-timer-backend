@@ -15,13 +15,14 @@ app.use(cookieParser());
 app.use(cors({
     credentials: true,
     origin: process.env.CLIENT_URL,
-    methods: 'GET, HEAD, PUT, PATCH, POST, DELETE',
-    allowedHeaders: 'Content-Type, Authorization',
+    methods: 'GET, HEAD, PUT, PATCH, POST,DELETE',
+    allowedHeaders: 'Content-Type,Authorization',
 }));
 
 //Routes
 app.use('/api', require('./router/userRoutes'));
 app.use('/api/tasks', require('./router/taskRoutes'));
+app.options('/api/login', cors());
 
 app.use(errorMiddleware);
 
