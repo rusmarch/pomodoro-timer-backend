@@ -22,7 +22,6 @@ app.use(cors({
 //Routes
 app.use('/api', require('./router/userRoutes'));
 app.use('/api/tasks', require('./router/taskRoutes'));
-app.options('/api/login', cors());
 
 app.use(errorMiddleware);
 
