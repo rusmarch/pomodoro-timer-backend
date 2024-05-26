@@ -14,7 +14,11 @@ const TaskSchema = new Schema({
       type: Boolean,
       default: false
    },
-   totalTime: {
+   estimatedTime: {
+      type: Number,
+      default: 0
+   },
+   workedTime: {
       type: Number,
       default: 0
    },

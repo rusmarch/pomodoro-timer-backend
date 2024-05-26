@@ -4,17 +4,17 @@ const ApiError = require('../exceptions/api-error');
 
 class TaskService {
 
-   async createTask(userId, title) {
+   async createTask(userId, title, estimatedTime) {
 
       const user = await userModel.findById(userId);
 
       if (!user) {
          throw ApiError.BadRequest('User not found');
       }
-
       const task = await taskModel.create({
          user: userId,
-         title
+         title,
+         estimatedTime,
       })
 
       return task;
@@ -53,7 +53,7 @@ class TaskService {
 
       await taskModel.findByIdAndDelete(taskId);
 
-      return { success: true }
+      return taskId;
    }
 
    async updateTask(userId, taskId, updatedData) {

@@ -6,11 +6,11 @@ class TaskController {
 
    async createTask(req, res, next) {
       try {
-         const { title } = req.body;
+         const { title, estimatedTime } = req.body;
          if (!title) {
             throw ApiError.BadRequest('Please add title')
          }
-         const task = await taskService.createTask(req.user.id, title);
+         const task = await taskService.createTask(req.user.id, title, estimatedTime);
          return res.json(task);
       } catch (e) {
          next(e);
