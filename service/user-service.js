@@ -8,8 +8,8 @@ const ApiError = require('../exceptions/api-error');
 
 class UserService {
     async registration(email, password, name) {
-        const candidate = await UserModel.findOne({ email })
-        if (candidate) {
+        const existingUser = await UserModel.findOne({ email })
+        if (existingUser) {
             throw ApiError.BadRequest(`User with mail address ${email} has already exists`)
         }
         const hashPassword = await bcrypt.hash(password, 3);
